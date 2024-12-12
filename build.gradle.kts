@@ -10,4 +10,5 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
     alias(libs.plugins.jetbrainsKotlinJvm) apply false
     alias(libs.plugins.androidLibrary) apply false
+    id("com.vanniktech.dependency.graph.generator") version "0.7.0"
 }

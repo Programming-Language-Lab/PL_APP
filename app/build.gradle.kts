@@ -77,7 +77,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     val koin_version = "4.1.0-Beta1"
-    implementation("io.insert-koin:koin-androidx-compose:$koin_version")
     implementation("io.insert-koin:koin-android:$koin_version")
 
 

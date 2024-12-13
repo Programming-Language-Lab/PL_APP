@@ -64,4 +64,6 @@ dependencies {
 
     val koin_version = "4.1.0-Beta1"
     implementation("io.insert-koin:koin-androidx-compose:$koin_version")
+
+    implementation("io.coil-kt:coil-compose:2.1.0")
 }

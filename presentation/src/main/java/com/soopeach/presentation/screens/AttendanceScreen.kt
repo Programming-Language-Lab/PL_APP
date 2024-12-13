@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.soopeach.domain.model.MemberState
 import com.soopeach.domain.model.MemberStatus
+import com.soopeach.presentation.components.MemberStatusCard
 import com.soopeach.presentation.viewmodel.AttendanceScreenState
 import com.soopeach.presentation.viewmodel.AttendanceScreenViewModel
 import com.soopeach.presentation.components.bottomSheet.PLBottomSheet
@@ -117,33 +118,15 @@ fun AttendanceScreenContent(
     ) {
         items(state.memberState) { curMemberState ->
 
-            Column(
-                Modifier
-                    .clip(shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp))
-                    .background(color = curMemberState.status.text.getStatusColor())
-                    .clickable {
-                        setSelectedMemberState(curMemberState)
-                        changeBottomSheetVisibility(true)
-                    }
-                    .padding(horizontal = 16.dp, vertical = 48.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = curMemberState.name,
-                    style = PLTypography.Korean.H0.copy(
-                        fontSize = 28.sp,
-                    )
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text(
-                    text = curMemberState.status.text,
-                    style = PLTypography.Korean.H0.copy(
-                        color = PLColor.Gray600
-                    )
-                )
-            }
+            MemberStatusCard(
+                cardColor = curMemberState.status.text.getStatusColor(),
+                onCardClicked = {
+                    setSelectedMemberState(curMemberState)
+                    changeBottomSheetVisibility(true)
+                },
+                name = curMemberState.name,
+                status = curMemberState.status.text
+            )
 
         }
     }

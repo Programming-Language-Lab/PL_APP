@@ -54,6 +54,12 @@ class StatusBoardClientImpl : StatusBoardClient {
             .add(MemberStateResponse(name, MemberStatus.HOME.text))
     }
 
+    override suspend fun deleteMember(id: String) {
+        Firebase.firestore.collection(DATA_BASE_NAME)
+            .document(id)
+            .delete()
+    }
+
     companion object {
         private const val FIRE_STORE_END_POINT = "https://firestore.googleapis.com/v1"
         private const val PROJECT_ID = "pllab-97a85"

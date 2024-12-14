@@ -25,11 +25,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -78,6 +74,12 @@ fun AttendanceScreen(
         },
         onAddMemberButtonClicked = {
             viewModel.addMember()
+        },
+        changeDeletingAlertVisibility = { isVisible ->
+            viewModel.changeDeletingAlertVisibility(isVisible)
+        },
+        onDeleteMemberButtonClicked = {
+            viewModel.deleteMember()
         }
     )
 
@@ -92,7 +94,9 @@ fun AttendanceScreenContent(
     setSelectedMemberState: (MemberState) -> Unit = {},
     changeModalVisibility: (Boolean) -> Unit = {},
     changeAddingMemberText: (String) -> Unit = {},
-    onAddMemberButtonClicked: () -> Unit = {}
+    onAddMemberButtonClicked: () -> Unit = {},
+    changeDeletingAlertVisibility: (Boolean) -> Unit = {},
+    onDeleteMemberButtonClicked: () -> Unit = {}
 ) {
 
     val scope = rememberCoroutineScope()
@@ -232,6 +236,63 @@ fun AttendanceScreenContent(
         )
     }
 
+    // 멤버 삭제를 위한 다이어로그
+    if (state.isDeletingAlertVisible) {
+        PLDialog(
+            onDismissRequest = {
+                changeDeletingAlertVisibility(false)
+            },
+            content = {
+                Column(
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp)
+                        .fillMaxWidth()
+                        .clip(
+                            shape = RoundedCornerShape(16.dp)
+                        )
+                        .background(PLColor.Gray500)
+                        .padding(24.dp),
+                ) {
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        text = "정말 ${state.selectedMember.name}님을 삭제하시겠어요?",
+                        style = PLTypography.Korean.B1_semiBold.copy(
+                            color = Color.White
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .clip(
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                                .background(PLColor.Gray300)
+                                .clickable {
+                                    onDeleteMemberButtonClicked()
+                                    changeDeletingAlertVisibility(false)
+                                }
+                                .padding(vertical = 8.dp, horizontal = 12.dp),
+                            text = "삭제하기",
+                            style = PLTypography.Korean.B2_regular.copy(
+                                color = Color.White
+                            )
+                        )
+                    }
+                }
+            }
+        )
+    }
+
     // 멤버 현황 목록
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -246,6 +307,10 @@ fun AttendanceScreenContent(
                 onCardClicked = {
                     setSelectedMemberState(curMemberState)
                     changeBottomSheetVisibility(true)
+                },
+                onCardLongClicked = {
+                    setSelectedMemberState(curMemberState)
+                    changeDeletingAlertVisibility(true)
                 },
                 name = curMemberState.name,
                 status = curMemberState.status.text
@@ -272,7 +337,7 @@ fun AttendanceScreenContent(
             Icon(
                 modifier = Modifier.size(28.dp),
                 imageVector = Icons.Default.Add,
-                contentDescription = "go to write screen",
+                contentDescription = "add member button",
                 tint = Color.White
             )
         }

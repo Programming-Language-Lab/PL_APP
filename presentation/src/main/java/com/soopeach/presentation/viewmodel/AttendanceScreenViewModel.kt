@@ -16,7 +16,8 @@ data class AttendanceScreenState(
     val selectedMember: MemberState = MemberState("", "", MemberStatus.INIT),
     val isBottomSheetVisible: Boolean = false,
     val isModalVisible: Boolean = false,
-    val addingMemberText: String = String.EMPTY
+    val addingMemberText: String = String.EMPTY,
+    val isDeletingAlertVisible: Boolean = false
 )
 
 class AttendanceScreenViewModel(
@@ -80,6 +81,17 @@ class AttendanceScreenViewModel(
         scope.launch {
             memberRepository.addMember(state.addingMemberText)
             _state = state.copy(addingMemberText = String.EMPTY)
+        }
+    }
+
+    fun changeDeletingAlertVisibility(isVisible: Boolean) {
+        _state = state.copy(isDeletingAlertVisible = isVisible)
+    }
+
+    fun deleteMember() {
+        scope.launch {
+            memberRepository.deleteMember(state.selectedMember.id)
+            _state = state.copy(isDeletingAlertVisible = false)
         }
     }
 

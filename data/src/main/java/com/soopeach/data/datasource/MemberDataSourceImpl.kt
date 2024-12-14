@@ -18,4 +18,8 @@ class MemberDataSourceImpl(
     override suspend fun addMember(name: String) {
         statusBoardClient.addMember(name)
     }
+
+    override suspend fun deleteMember(id: String) {
+        statusBoardClient.deleteMember(id)
+    }
 }

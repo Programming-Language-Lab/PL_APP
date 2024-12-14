@@ -1,7 +1,8 @@
 package com.soopeach.presentation.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,22 +25,29 @@ import coil.compose.AsyncImage
 import com.soopeach.presentation.ui.theme.PLColor
 import com.soopeach.presentation.ui.theme.PLTypography
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MemberStatusCard(
-    cardColor : Color,
+    cardColor: Color,
     onCardClicked: () -> Unit,
     name: String,
     status: String,
-    imageUrl : String = "https://picsum.photos/250/250"
+    imageUrl: String = "https://picsum.photos/250/250",
+    onCardLongClicked: () -> Unit
 ) {
     Row(
         Modifier
             .fillMaxWidth()
             .clip(shape = RoundedCornerShape(16.dp))
             .background(color = cardColor)
-            .clickable {
-                onCardClicked()
-            }
+            .combinedClickable(
+                onClick = {
+                    onCardClicked()
+                },
+                onLongClick = {
+                    onCardLongClicked()
+                },
+            )
             .padding(horizontal = 16.dp, vertical = 48.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(16.dp)

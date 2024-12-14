@@ -30,4 +30,9 @@ class MemberRepositoryImpl(
     override suspend fun addMember(name: String) {
         memberDataSource.addMember(name)
     }
+
+    override suspend fun deleteMember(id: String) {
+        memberDataSource.deleteMember(id)
+    }
+
 }

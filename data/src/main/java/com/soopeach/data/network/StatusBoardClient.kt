@@ -11,4 +11,6 @@ interface StatusBoardClient {
     suspend fun setMemberState(id: String, name: String, status: String)
 
     suspend fun addMember(name: String)
+
+    suspend fun deleteMember(id: String)
 }

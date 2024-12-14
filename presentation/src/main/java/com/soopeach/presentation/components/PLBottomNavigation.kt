@@ -29,7 +29,7 @@ fun PLBottomNavigation(
             .background(color = PLColor.Gray800)
             .height(64.dp)
             .fillMaxWidth()
-            .padding(horizontal = 40.dp)
+            .padding(horizontal = 20.dp)
     ) {
         Row(
             Modifier.fillMaxSize(),

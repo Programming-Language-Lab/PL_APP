@@ -32,7 +32,7 @@ fun AppScreenContent() {
     val navController = rememberNavController()
 
     Scaffold(
-         containerColor = PLColor.Gray700,
+        containerColor = PLColor.Gray700,
         bottomBar = {
 
             val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -72,6 +72,14 @@ fun AppScreenContent() {
 
             composable(Screen.Attendance.route) {
                 AttendanceScreen(navController)
+            }
+
+            composable(Screen.Announce.route) {
+                AnnounceScreen()
+            }
+
+            composable(Screen.HallOfFame.route) {
+                HallOfFameScreen()
             }
 
             composable(Screen.AI.route) {

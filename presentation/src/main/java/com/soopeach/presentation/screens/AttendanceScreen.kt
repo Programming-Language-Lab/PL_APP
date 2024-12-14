@@ -41,6 +41,7 @@ import com.soopeach.presentation.components.MemberStatusCard
 import com.soopeach.presentation.viewmodel.AttendanceScreenState
 import com.soopeach.presentation.viewmodel.AttendanceScreenViewModel
 import com.soopeach.presentation.components.bottomSheet.PLBottomSheet
+import com.soopeach.presentation.components.dialog.DialogPositiveButton
 import com.soopeach.presentation.components.dialog.PLDialog
 import com.soopeach.presentation.utils.getStatusColor
 import com.soopeach.presentation.ui.theme.PLColor
@@ -207,30 +208,16 @@ fun AttendanceScreenContent(
                         }
                     }
 
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(24.dp))
 
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd
-                    ) {
-                        Text(
-                            modifier = Modifier
-                                .clip(
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .background(PLColor.Gray300)
-                                .clickable {
-                                    onAddMemberButtonClicked()
-                                    changeModalVisibility(false)
-                                }
-                                .padding(vertical = 8.dp, horizontal = 12.dp),
-                            text = "추가하기",
-                            style = PLTypography.Korean.B2_regular.copy(
-                                color = Color.White
-                            )
-                        )
-                    }
+                    DialogPositiveButton(
+                        text = "추가하기",
+                        onClicked = {
+                            onAddMemberButtonClicked()
+                            changeModalVisibility(false)
+                        }
+                    )
+
                 }
             }
         )
@@ -266,28 +253,14 @@ fun AttendanceScreenContent(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterEnd
-                    ) {
-                        Text(
-                            modifier = Modifier
-                                .clip(
-                                    shape = RoundedCornerShape(8.dp)
-                                )
-                                .background(PLColor.Gray300)
-                                .clickable {
-                                    onDeleteMemberButtonClicked()
-                                    changeDeletingAlertVisibility(false)
-                                }
-                                .padding(vertical = 8.dp, horizontal = 12.dp),
-                            text = "삭제하기",
-                            style = PLTypography.Korean.B2_regular.copy(
-                                color = Color.White
-                            )
-                        )
-                    }
+                    DialogPositiveButton(
+                        text = "삭제하기",
+                        onClicked = {
+                            onDeleteMemberButtonClicked()
+                            changeDeletingAlertVisibility(false)
+                        }
+                    )
+
                 }
             }
         )

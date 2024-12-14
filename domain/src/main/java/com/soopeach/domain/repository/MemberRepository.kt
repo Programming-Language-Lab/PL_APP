@@ -8,4 +8,6 @@ interface MemberRepository {
     fun getMembersStateFlow(): Flow<List<MemberState>>
 
     suspend fun setMemberState(id: String, name: String, status: String)
+
+    suspend fun addMember(name: String)
 }

@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.soopeach.domain.EMPTY
 import com.soopeach.domain.model.MemberState
 import com.soopeach.domain.model.MemberStatus
 import com.soopeach.domain.repository.MemberRepository
@@ -13,7 +14,9 @@ import kotlinx.coroutines.launch
 data class AttendanceScreenState(
     val memberState: List<MemberState> = emptyList(),
     val selectedMember: MemberState = MemberState("", "", MemberStatus.INIT),
-    val isBottomSheetVisible: Boolean = false
+    val isBottomSheetVisible: Boolean = false,
+    val isModalVisible: Boolean = false,
+    val addingMemberText: String = String.EMPTY
 )
 
 class AttendanceScreenViewModel(
@@ -63,6 +66,21 @@ class AttendanceScreenViewModel(
 
     fun setSelectedMemberState(memberState: MemberState) {
         _state = state.copy(selectedMember = memberState)
+    }
+
+    fun changeModalVisibility(isVisible: Boolean) {
+        _state = state.copy(isModalVisible = isVisible)
+    }
+
+    fun changeAddingMemberText(text: String) {
+        _state = state.copy(addingMemberText = text)
+    }
+
+    fun addMember() {
+        scope.launch {
+            memberRepository.addMember(state.addingMemberText)
+            _state = state.copy(addingMemberText = String.EMPTY)
+        }
     }
 
 }

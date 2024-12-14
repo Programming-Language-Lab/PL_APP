@@ -7,6 +7,7 @@ import com.google.firebase.ktx.Firebase
 import com.soopeach.data.BuildConfig
 import com.soopeach.data.model.MemberStateResponse
 import com.soopeach.data.model.WebHookMessage
+import com.soopeach.domain.model.MemberStatus
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -46,6 +47,11 @@ class StatusBoardClientImpl : StatusBoardClient {
                 header(HttpHeaders.ContentType, ContentType.Application.Json)
                 setBody(message)
             }
+    }
+
+    override suspend fun addMember(name: String) {
+        Firebase.firestore.collection(DATA_BASE_NAME)
+            .add(MemberStateResponse(name, MemberStatus.HOME.text))
     }
 
     companion object {

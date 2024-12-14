@@ -8,4 +8,6 @@ interface MemberDataSource {
     fun getMembersStateFlow(): Flow<QuerySnapshot>
 
     suspend fun setMemberState(id: String, name: String, status: String)
+
+    suspend fun addMember(name: String)
 }

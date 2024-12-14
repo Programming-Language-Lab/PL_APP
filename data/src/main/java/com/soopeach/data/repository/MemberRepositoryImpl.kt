@@ -26,4 +26,8 @@ class MemberRepositoryImpl(
     override suspend fun setMemberState(id: String, name: String, status: String) {
         memberDataSource.setMemberState(id, name, status)
     }
+
+    override suspend fun addMember(name: String) {
+        memberDataSource.addMember(name)
+    }
 }

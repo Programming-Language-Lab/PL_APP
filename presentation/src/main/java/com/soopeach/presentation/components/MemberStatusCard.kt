@@ -57,8 +57,8 @@ fun MemberStatusCard(
             model = imageUrl,
             contentDescription = "Member Image",
             modifier = Modifier
-                .size(50.dp)
-                .clip(shape = RoundedCornerShape(50.dp)),
+                .size(200.dp, 150.dp)
+                .clip(shape = RoundedCornerShape(14.dp)),
             contentScale = ContentScale.Crop
         )
 

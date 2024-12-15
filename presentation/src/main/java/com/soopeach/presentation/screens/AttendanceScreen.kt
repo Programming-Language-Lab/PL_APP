@@ -152,7 +152,6 @@ fun AttendanceScreenContent(
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
-                        .fillMaxWidth()
                         .clip(
                             shape = RoundedCornerShape(16.dp)
                         )
@@ -233,7 +232,6 @@ fun AttendanceScreenContent(
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 20.dp)
-                        .fillMaxWidth()
                         .clip(
                             shape = RoundedCornerShape(16.dp)
                         )
@@ -270,8 +268,8 @@ fun AttendanceScreenContent(
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(24.dp),
-        horizontalArrangement = Arrangement.spacedBy(24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
+        horizontalArrangement = Arrangement.spacedBy(32.dp),
+        verticalArrangement = Arrangement.spacedBy(52.dp),
     ) {
         items(state.memberState) { curMemberState ->
 

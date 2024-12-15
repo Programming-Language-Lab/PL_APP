@@ -33,10 +33,10 @@ class StatusBoardClientImpl : StatusBoardClient {
             .snapshots()
     }
 
-    override suspend fun setMemberState(id: String, name: String, status: String) {
+    override suspend fun setMemberState(id: String, name: String, status: String, position: String) {
         Firebase.firestore.collection(DATA_BASE_NAME)
             .document(id)
-            .set(MemberStateResponse(name, status))
+            .set(MemberStateResponse(name, status, position))
 
         postWebHookMessage(WebHookMessage("*${name}* 은/는 *$status*"))
     }
@@ -50,8 +50,9 @@ class StatusBoardClientImpl : StatusBoardClient {
     }
 
     override suspend fun addMember(name: String) {
+        // Todo: position
         Firebase.firestore.collection(DATA_BASE_NAME)
-            .add(MemberStateResponse(name, MemberStatus.HOME.text))
+            .add(MemberStateResponse(name, MemberStatus.HOME.text, "F.E"))
     }
 
     override suspend fun deleteMember(id: String) {

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 data class AttendanceScreenState(
     val memberState: List<MemberState> = emptyList(),
-    val selectedMember: MemberState = MemberState("", "", MemberStatus.INIT),
+    val selectedMember: MemberState = MemberState("", "", MemberStatus.INIT, ""),
     val isBottomSheetVisible: Boolean = false,
     val isModalVisible: Boolean = false,
     val addingMemberText: String = String.EMPTY,
@@ -60,7 +60,8 @@ class AttendanceScreenViewModel(
             memberRepository.setMemberState(
                 state.selectedMember.id,
                 state.selectedMember.name,
-                state.selectedMember.status.text
+                state.selectedMember.status.text,
+                state.selectedMember.position
             )
         }
     }

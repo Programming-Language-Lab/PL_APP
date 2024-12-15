@@ -17,14 +17,15 @@ class MemberRepositoryImpl(
                 val name = document.data?.get("name") as String
                 val state = document.data?.get("status") as String
                 val id = document.id
-                tempList.add(MemberState(name, id, MemberStatus.toEnum(state)))
+                val position = document.data?.get("position") as String
+                tempList.add(MemberState(name, id, MemberStatus.toEnum(state), position))
             }
             tempList
         }
     }
 
-    override suspend fun setMemberState(id: String, name: String, status: String) {
-        memberDataSource.setMemberState(id, name, status)
+    override suspend fun setMemberState(id: String, name: String, status: String, position: String) {
+        memberDataSource.setMemberState(id, name, status, position)
     }
 
     override suspend fun addMember(name: String) {

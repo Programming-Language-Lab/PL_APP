@@ -11,8 +11,8 @@ class MemberDataSourceImpl(
         return statusBoardClient.getMembersStateFlow()
     }
 
-    override suspend fun setMemberState(id: String, name: String, status: String) {
-        statusBoardClient.setMemberState(id, name, status)
+    override suspend fun setMemberState(id: String, name: String, status: String, position: String) {
+        statusBoardClient.setMemberState(id, name, status, position)
     }
 
     override suspend fun addMember(name: String) {

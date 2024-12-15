@@ -284,7 +284,8 @@ fun AttendanceScreenContent(
                     changeDeletingAlertVisibility(true)
                 },
                 name = curMemberState.name,
-                status = curMemberState.status.text
+                status = curMemberState.status.text,
+                position = curMemberState.position
             )
 
         }

@@ -1,5 +1,7 @@
 package com.soopeach.presentation
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,8 +13,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Pl_labTheme {
-                AppScreen()
+                AppScreen { projectUrl ->
+                    startActivity(getWebIntent(projectUrl))
+                }
             }
         }
     }
 }
+private fun getWebIntent(url: String) = Intent(
+    Intent.ACTION_VIEW,
+    Uri.parse(url)
+)

@@ -20,14 +20,18 @@ import com.soopeach.presentation.Screen.Companion.bottomNavigationItems
 import com.soopeach.presentation.ui.theme.PLColor
 
 @Composable
-fun AppScreen() {
-    AppScreenContent(
-
-    )
+fun AppScreen(
+    onProjectItemClicked: (String) -> Unit
+) {
+    AppScreenContent {
+        onProjectItemClicked(it)
+    }
 }
 
 @Composable
-fun AppScreenContent() {
+fun AppScreenContent(
+    onProjectItemClicked: (String) -> Unit
+) {
 
     val navController = rememberNavController()
 
@@ -79,7 +83,9 @@ fun AppScreenContent() {
             }
 
             composable(Screen.HallOfFame.route) {
-                HallOfFameScreen()
+                HallOfFameScreen {
+                    onProjectItemClicked(it)
+                }
             }
 
             composable(Screen.AI.route) {

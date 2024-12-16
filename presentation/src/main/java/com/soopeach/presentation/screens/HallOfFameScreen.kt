@@ -22,27 +22,32 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.soopeach.presentation.components.HallOfFameFrame
 import com.soopeach.presentation.ui.theme.PLTypography
 import com.soopeach.presentation.viewmodel.HallOfFameScreenState
 import com.soopeach.presentation.viewmodel.HallOfFameScreenViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HallOfFameScreen() {
+fun HallOfFameScreen(
+    onProjectItemClicked: (String) -> Unit
+) {
 
     val viewModel = koinViewModel<HallOfFameScreenViewModel>()
 
     HallOfFameScreenContent(
-        state = viewModel.state
+        state = viewModel.state,
+        onProjectItemClicked = {
+            onProjectItemClicked(it)
+        }
     )
 }
 
 @Composable
 fun HallOfFameScreenContent(
-    state: HallOfFameScreenState
+    state: HallOfFameScreenState,
+    onProjectItemClicked: (String) -> Unit
 ) {
-
-    val scope = rememberCoroutineScope()
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -51,36 +56,10 @@ fun HallOfFameScreenContent(
         verticalArrangement = Arrangement.spacedBy(120.dp),
     ) {
         items(state.projectItems) { curProjectItem ->
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(shape = RoundedCornerShape(15.dp))
-                    .clickable {
-
-                    }
-            ) {
-                AsyncImage(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1f),
-                    model = curProjectItem.imageUrl,
-                    contentDescription = "프로젝트 이미지",
-                    contentScale = ContentScale.Crop
-                )
-
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color(curProjectItem.colorCode))
-                        .padding(vertical = 16.dp),
-                    text = curProjectItem.name,
-                    style = PLTypography.Korean.H0,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-            }
-
+            HallOfFameFrame(
+                curProjectItem,
+                onProjectItemClicked
+            )
         }
     }
 }

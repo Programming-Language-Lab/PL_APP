@@ -14,7 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.soopeach.domain.EMPTY
-import com.soopeach.presentation.components.PLBottomNavigation
+import com.soopeach.presentation.components.navigation.PLBottomNavigation
 import com.soopeach.presentation.Screen
 import com.soopeach.presentation.Screen.Companion.bottomNavigationItems
 import com.soopeach.presentation.ui.theme.PLColor

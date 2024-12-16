@@ -1,4 +1,4 @@
-package com.soopeach.presentation.components
+package com.soopeach.presentation.components.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

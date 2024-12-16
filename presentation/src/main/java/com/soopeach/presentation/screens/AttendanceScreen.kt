@@ -274,7 +274,6 @@ fun AttendanceScreenContent(
         items(state.memberState) { curMemberState ->
 
             MemberStatusCard(
-                cardColor = curMemberState.status.text.getStatusColor(),
                 onCardClicked = {
                     setSelectedMemberState(curMemberState)
                     changeBottomSheetVisibility(true)

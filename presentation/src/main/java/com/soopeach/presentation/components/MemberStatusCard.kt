@@ -31,7 +31,6 @@ import com.soopeach.presentation.ui.theme.PLTypography
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MemberStatusCard(
-    cardColor: Color,
     onCardClicked: () -> Unit,
     name: String,
     status: String,

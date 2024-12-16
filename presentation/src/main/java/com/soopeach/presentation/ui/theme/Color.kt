@@ -1,6 +1,7 @@
 package com.soopeach.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import com.soopeach.domain.model.MemberStatus
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
@@ -11,11 +12,8 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 object PLColor {
-    val MainOrange = Color(0xFFF05F1F)
-    val MainGreen = Color(0xFF288B5A)
 
-    val MainYellow = Color(0xFFFFCA2A)
-    val MainBlue = Color(0xFF6692E9)
+    val Main = Color(0xFF95B2F7)
 
     // Object, Line, Text Colors
     val White = Color(0xFFFFFFFF)
@@ -28,16 +26,20 @@ object PLColor {
     val Gray700 = Color(0xFF17171B)
     val Gray800 = Color(0xFF101012)
 
-    // Error Color
-    val ErrorRed = Color(0xFFFF5E5E)
+    val In = Color(0xFF5037DC)
+    val Out = Color(0xFFFF964B)
+    val Class = Color(0xFF4DE71A)
+    val Home = Color(0xFFEE68E5)
 
-    // Chip Color
-    val YES24 = Color(0xFF007FFF)
-    val Interpark = Color(0xFF8E43E6)
-    val Melon = Color(0xFF0FAE2F)
-    val Wemakeprice = Color(0xFFE7312E)
 
-    // Login Color
-    val Kakao = Color(0xFFFEE500)
+    fun getColor(text: String): Color {
+        return when (text) {
+            MemberStatus.IN.text -> In
+            MemberStatus.OUT.text -> Out
+            MemberStatus.CLASS.text -> Class
+            MemberStatus.HOME.text -> Home
+            else -> Gray100
+        }
+    }
 }
 

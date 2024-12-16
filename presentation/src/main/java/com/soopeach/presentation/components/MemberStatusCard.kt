@@ -44,7 +44,7 @@ fun MemberStatusCard(
             Modifier
                 .fillMaxWidth()
                 .clip(shape = RoundedCornerShape(16.dp))
-                .background(color = cardColor)
+                .background(color = PLColor.Main)
                 .combinedClickable(
                     onClick = {
                         onCardClicked()
@@ -97,10 +97,16 @@ fun MemberStatusCard(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.Transparent)
-                .padding(12.dp),
+                .padding(6.dp),
             contentAlignment = Alignment.TopEnd
         ) {
             Text(
+                modifier = Modifier
+                    .clip(
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                    .background(PLColor.getColor(status))
+                    .padding(vertical = 4.dp, horizontal = 8.dp),
                 text = status,
                 style = PLTypography.Korean.B1_semiBold.copy(
                     color = PLColor.Gray600

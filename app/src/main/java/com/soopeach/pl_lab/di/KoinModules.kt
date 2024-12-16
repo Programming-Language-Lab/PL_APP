@@ -2,8 +2,6 @@ package com.soopeach.pl_lab.di
 
 import com.soopeach.data.datasource.MemberDataSource
 import com.soopeach.data.datasource.MemberDataSourceImpl
-import com.soopeach.data.network.StatusBoardClient
-import com.soopeach.data.network.StatusBoardClientImpl
 import com.soopeach.data.repository.MemberRepositoryImpl
 import com.soopeach.domain.repository.MemberRepository
 import com.soopeach.presentation.viewmodel.AttendanceScreenViewModel
@@ -23,11 +21,7 @@ val repositoryModules =
         single<MemberRepository> { MemberRepositoryImpl(get()) }
     }
 
-val networkModule = module {
-    single<StatusBoardClient> { StatusBoardClientImpl() }
-}
-
 val dataSourceModules = module {
-    single<MemberDataSource> { MemberDataSourceImpl(get()) }
+    single<MemberDataSource> { MemberDataSourceImpl() }
 }
 

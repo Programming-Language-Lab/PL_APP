@@ -1,4 +1,4 @@
-package com.soopeach.data.datasource
+package com.soopeach.data
 
 
 const val FIRE_STORE_END_POINT = "https://firestore.googleapis.com/v1"

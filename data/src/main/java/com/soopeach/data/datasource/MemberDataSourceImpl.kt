@@ -5,6 +5,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.snapshots
 import com.google.firebase.ktx.Firebase
 import com.soopeach.data.BuildConfig
+import com.soopeach.data.MEMBERS
 import com.soopeach.data.model.MemberStateResponse
 import com.soopeach.data.model.WebHookMessage
 import com.soopeach.data.network.Client

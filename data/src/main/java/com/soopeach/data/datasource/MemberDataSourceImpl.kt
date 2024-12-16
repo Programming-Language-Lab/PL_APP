@@ -20,7 +20,7 @@ class MemberDataSourceImpl(): MemberDataSource {
     private val client = Client.getInstance()
 
     override fun getMembersStateFlow(): Flow<QuerySnapshot> {
-        return Firebase.firestore.collection(DATA_BASE_NAME)
+        return Firebase.firestore.collection(MEMBERS)
             .snapshots()
     }
 
@@ -30,7 +30,7 @@ class MemberDataSourceImpl(): MemberDataSource {
         status: String,
         position: String
     ) {
-        Firebase.firestore.collection(DATA_BASE_NAME)
+        Firebase.firestore.collection(MEMBERS)
             .document(id)
             .set(MemberStateResponse(name, status, position))
 
@@ -47,21 +47,13 @@ class MemberDataSourceImpl(): MemberDataSource {
 
     override suspend fun addMember(name: String) {
         // Todo: position
-        Firebase.firestore.collection(DATA_BASE_NAME)
+        Firebase.firestore.collection(MEMBERS)
             .add(MemberStateResponse(name, MemberStatus.HOME.text, "F.E"))
     }
 
     override suspend fun deleteMember(id: String) {
-        Firebase.firestore.collection(DATA_BASE_NAME)
+        Firebase.firestore.collection(MEMBERS)
             .document(id)
             .delete()
-    }
-
-    companion object {
-        private const val FIRE_STORE_END_POINT = "https://firestore.googleapis.com/v1"
-        private const val PROJECT_ID = "pllab-97a85"
-        private const val DATA_BASE_NAME = "Members"
-        private const val FIRE_STORE_BASE_URL =
-            "$FIRE_STORE_END_POINT/projects/$PROJECT_ID/databases/(default)/documents/$DATA_BASE_NAME"
     }
 }

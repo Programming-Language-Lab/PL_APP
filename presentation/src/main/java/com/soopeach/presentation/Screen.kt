@@ -18,11 +18,16 @@ sealed class Screen(
         selectedIcon = R.drawable.ic_my_filled,
     )
 
-    data object Announce : Screen(
-        route = "announce",
+    data object Announcement : Screen(
+        route = "announcement",
         title = "공지사항",
         unSelectedIcon = R.drawable.ic_chat,
         selectedIcon = R.drawable.ic_chat_filled,
+    )
+
+    data object AnnouncementDetail : Screen(
+        route = "announcementDetail",
+        title = "공지사항 상세",
     )
 
     data object HallOfFame : Screen(
@@ -40,7 +45,7 @@ sealed class Screen(
     )
 
     companion object {
-        val bottomNavigationItems = listOf(Attendance, Announce, HallOfFame, AI)
+        val bottomNavigationItems = listOf(Attendance, Announcement, HallOfFame, AI)
     }
 
 }

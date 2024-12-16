@@ -78,8 +78,12 @@ fun AppScreenContent(
                 AttendanceScreen(navController)
             }
 
-            composable(Screen.Announce.route) {
-                AnnounceScreen()
+            composable(Screen.Announcement.route) {
+                AnnouncementScreen(navController)
+            }
+
+            composable(Screen.AnnouncementDetail.route) {
+                AnnouncementDetailScreen()
             }
 
             composable(Screen.HallOfFame.route) {

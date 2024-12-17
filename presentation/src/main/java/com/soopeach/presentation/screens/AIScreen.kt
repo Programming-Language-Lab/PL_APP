@@ -1,16 +1,13 @@
 package com.soopeach.presentation.screens
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import com.google.accompanist.web.AccompanistWebChromeClient
 import com.google.accompanist.web.AccompanistWebViewClient
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
 
 @Composable
-fun AIScreen(
-    navController: NavController
-) {
+fun AIScreen() {
     val webViewState =
         rememberWebViewState(
             url = "http://codebox123.i234.me:7004/",

@@ -34,25 +34,22 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.soopeach.domain.model.MemberState
 import com.soopeach.domain.model.MemberStatus
 import com.soopeach.presentation.components.MemberStatusCard
 import com.soopeach.presentation.viewmodel.AttendanceScreenState
 import com.soopeach.presentation.viewmodel.AttendanceScreenViewModel
 import com.soopeach.presentation.components.bottomSheet.PLBottomSheet
+import com.soopeach.presentation.components.button.PLFloatingButton
 import com.soopeach.presentation.components.dialog.DialogPositiveButton
 import com.soopeach.presentation.components.dialog.PLDialog
-import com.soopeach.presentation.utils.getStatusColor
 import com.soopeach.presentation.ui.theme.PLColor
 import com.soopeach.presentation.ui.theme.PLTypography
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AttendanceScreen(
-    navController: NavController
-) {
+fun AttendanceScreen() {
 
     val viewModel = koinViewModel<AttendanceScreenViewModel>()
 
@@ -290,27 +287,8 @@ fun AttendanceScreenContent(
         }
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .padding(25.dp),
-        contentAlignment = Alignment.BottomEnd
-    ) {
-        FloatingActionButton(
-            modifier =
-            Modifier.size(52.dp),
-            onClick = {
-                changeModalVisibility(true)
-            },
-            containerColor = PLColor.Gray400,
-        ) {
-            Icon(
-                modifier = Modifier.size(28.dp),
-                imageVector = Icons.Default.Add,
-                contentDescription = "add member button",
-                tint = Color.White
-            )
-        }
+    PLFloatingButton {
+        changeModalVisibility(true)
     }
+
 }

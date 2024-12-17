@@ -35,6 +35,11 @@ sealed class Screen(
         ),
     )
 
+    data object AnnouncementWrite : Screen(
+        route = "announcementWrite",
+        title = "공지사항 작성",
+    )
+
     data object HallOfFame : Screen(
         route = "hallOfFame",
         title = "명예의 전당",

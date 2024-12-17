@@ -9,4 +9,5 @@ interface AnnouncementDataSource {
 
     suspend fun getAnnouncementDetail(announcementId: String): AnnouncementItem
 
+    suspend fun postAnnouncement(title: String, content: String): Result<Unit>
 }

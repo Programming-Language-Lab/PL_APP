@@ -15,4 +15,8 @@ class AnnouncementRepositoryImpl(
     override suspend fun getAnnouncementDetail(announcementId: String): AnnouncementItem {
         return announcementDataSource.getAnnouncementDetail(announcementId)
     }
+
+    override suspend fun postAnnouncement(title: String, content: String): Result<Unit> {
+        return announcementDataSource.postAnnouncement(title, content)
+    }
 }

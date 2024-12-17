@@ -75,7 +75,7 @@ fun AppScreenContent(
         ) {
 
             composable(Screen.Attendance.route) {
-                AttendanceScreen(navController)
+                AttendanceScreen()
             }
 
             composable(Screen.Announcement.route) {
@@ -91,6 +91,10 @@ fun AppScreenContent(
                 )
             }
 
+            composable(Screen.AnnouncementWrite.route) {
+                AnnouncementWriteScreen(navController)
+            }
+
             composable(Screen.HallOfFame.route) {
                 HallOfFameScreen {
                     onProjectItemClicked(it)
@@ -98,7 +102,7 @@ fun AppScreenContent(
             }
 
             composable(Screen.AI.route) {
-                AIScreen(navController)
+                AIScreen()
             }
 
         }

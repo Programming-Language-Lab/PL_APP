@@ -1,5 +1,7 @@
 package com.soopeach.data.datasource
 
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.soopeach.data.ANNOUNCEMENTS
@@ -12,6 +14,7 @@ class AnnouncementDataSourceImpl : AnnouncementDataSource {
     override suspend fun getAnnouncementList(): List<AnnouncementPreviewItem> {
         val result = Firebase.firestore
             .collection(ANNOUNCEMENTS)
+            .orderBy("createdAt", Query.Direction.DESCENDING)// 작성 시간 기준 정렬해서 가져옴
             .get()
             .await()
 
@@ -34,5 +37,19 @@ class AnnouncementDataSourceImpl : AnnouncementDataSource {
         val id = result.id
 
         return AnnouncementItem(title, content, id)
+    }
+
+    override suspend fun postAnnouncement(title: String, content: String): Result<Unit> {
+        return runCatching {
+            Firebase.firestore
+                .collection(ANNOUNCEMENTS)
+                .add(
+                    mapOf(
+                        "title" to title,
+                        "content" to content,
+                        "createdAt" to FieldValue.serverTimestamp()
+                    )
+                ).await()
+        }
     }
 }

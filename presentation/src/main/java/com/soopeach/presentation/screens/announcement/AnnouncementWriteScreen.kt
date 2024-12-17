@@ -1,4 +1,4 @@
-package com.soopeach.presentation.screens
+package com.soopeach.presentation.screens.announcement
 
 import android.widget.Toast
 import androidx.compose.foundation.background

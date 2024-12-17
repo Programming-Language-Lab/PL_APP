@@ -17,6 +17,9 @@ import com.soopeach.domain.EMPTY
 import com.soopeach.presentation.components.navigation.PLBottomNavigation
 import com.soopeach.presentation.Screen
 import com.soopeach.presentation.Screen.Companion.bottomNavigationItems
+import com.soopeach.presentation.screens.announcement.AnnouncementDetailScreen
+import com.soopeach.presentation.screens.announcement.AnnouncementScreen
+import com.soopeach.presentation.screens.announcement.AnnouncementWriteScreen
 import com.soopeach.presentation.ui.theme.PLColor
 
 @Composable

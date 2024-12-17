@@ -2,6 +2,8 @@ package com.soopeach.presentation
 
 import androidx.annotation.DrawableRes
 import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
 sealed class Screen(
     val route: String,
@@ -26,8 +28,11 @@ sealed class Screen(
     )
 
     data object AnnouncementDetail : Screen(
-        route = "announcementDetail",
+        route = "announcementDetail/{announcementId}",
         title = "공지사항 상세",
+        arguments = listOf(
+            navArgument("announcementId") { type = NavType.StringType },
+        ),
     )
 
     data object HallOfFame : Screen(

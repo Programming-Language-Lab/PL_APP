@@ -35,8 +35,7 @@ fun AnnouncementScreen(
     AnnouncementScreenContent(
         state = viewModel.state
     ) {
-        // with it
-        navController.navigate(Screen.AnnouncementDetail.route)
+        navController.navigate(Screen.AnnouncementDetail.route.replace("{announcementId}", it))
     }
 
 }

@@ -1,8 +1,69 @@
 package com.soopeach.presentation.screens
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.soopeach.presentation.ui.theme.PLColor
+import com.soopeach.presentation.ui.theme.PLTypography
+import com.soopeach.presentation.viewmodel.AnnouncementState
+import com.soopeach.presentation.viewmodel.AnnouncementViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AnnouncementDetailScreen() {
+fun AnnouncementDetailScreen(
+    announcementId: String
+) {
+
+    val viewModel = koinViewModel<AnnouncementViewModel>()
+
+    LaunchedEffect(announcementId) {
+        viewModel.getAnnouncementDetail(announcementId)
+    }
+
+    AnnouncementDetailScreenContent(viewModel.state)
+}
+
+@Composable
+fun AnnouncementDetailScreenContent(
+    state: AnnouncementState
+) {
+
+    state.detailedAnnouncementItem?.let { announcementItem ->
+
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 32.dp, vertical = 64.dp)
+        ) {
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = announcementItem.title,
+                style = PLTypography.Korean.H0.copy(
+                    fontSize = 52.sp,
+                    color = Color.White
+                ),
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = announcementItem.content,
+                style = PLTypography.Korean.H0.copy(
+                    fontSize = 32.sp,
+                    color = PLColor.Gray200
+                ),
+            )
+        }
+    }
 
 }

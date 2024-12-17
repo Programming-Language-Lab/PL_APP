@@ -82,8 +82,13 @@ fun AppScreenContent(
                 AnnouncementScreen(navController)
             }
 
-            composable(Screen.AnnouncementDetail.route) {
-                AnnouncementDetailScreen()
+            composable(
+                Screen.AnnouncementDetail.route,
+                Screen.AnnouncementDetail.arguments
+            ) {backStackEntry ->
+                AnnouncementDetailScreen(
+                    announcementId = backStackEntry.arguments?.getString("announcementId") ?: String.EMPTY,
+                )
             }
 
             composable(Screen.HallOfFame.route) {

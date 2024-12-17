@@ -6,11 +6,13 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.soopeach.domain.model.AnnouncementItem
+import com.soopeach.domain.model.AnnouncementPreviewItem
 import com.soopeach.domain.repository.AnnouncementRepository
 import kotlinx.coroutines.launch
 
 data class AnnouncementState(
-    val announcementItems: List<AnnouncementItem> = emptyList()
+    val announcementItems: List<AnnouncementPreviewItem> = emptyList(),
+    val detailedAnnouncementItem: AnnouncementItem? = null
 )
 
 class AnnouncementViewModel(
@@ -25,8 +27,14 @@ class AnnouncementViewModel(
     init {
         scope.launch {
             val itemList = announcementRepository.getAnnouncementList()
-            println("테스트 아이템 리스트 $itemList")
             _state = _state.copy(announcementItems = itemList)
+        }
+    }
+
+    fun getAnnouncementDetail(announcementId: String) {
+        scope.launch {
+            val item = announcementRepository.getAnnouncementDetail(announcementId)
+            _state = _state.copy(detailedAnnouncementItem = item)
         }
     }
 }

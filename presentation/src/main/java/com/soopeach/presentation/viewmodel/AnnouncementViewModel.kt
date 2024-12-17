@@ -24,7 +24,7 @@ class AnnouncementViewModel(
 
     private val scope = viewModelScope
 
-    init {
+    fun getAnnouncementList() {
         scope.launch {
             val itemList = announcementRepository.getAnnouncementList()
             _state = _state.copy(announcementItems = itemList)

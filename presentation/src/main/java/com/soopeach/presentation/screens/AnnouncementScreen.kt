@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -32,6 +33,11 @@ fun AnnouncementScreen(
 ) {
 
     val viewModel = koinViewModel<AnnouncementViewModel>()
+
+    LaunchedEffect(true) {
+        viewModel.getAnnouncementList()
+    }
+
     AnnouncementScreenContent(
         state = viewModel.state
     ) {

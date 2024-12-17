@@ -22,14 +22,12 @@ class HallOfFameScreenViewModel(
 
     private val scope = viewModelScope
 
-    init {
-
+    fun getProjectList() {
         scope.launch {
             val projectItems = projectRepository.getProjectList()
             _state = state.copy(
                 projectItems = projectItems
             )
         }
-
     }
 }

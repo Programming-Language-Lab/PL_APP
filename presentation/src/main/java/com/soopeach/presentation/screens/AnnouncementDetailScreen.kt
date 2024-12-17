@@ -1,14 +1,20 @@
 package com.soopeach.presentation.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,16 +59,23 @@ fun AnnouncementDetailScreenContent(
                 ),
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(48.dp))
 
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = announcementItem.content,
-                style = PLTypography.Korean.H0.copy(
-                    fontSize = 32.sp,
-                    color = PLColor.Gray200
-                ),
-            )
+            Column(modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .clip(shape = RoundedCornerShape(12.dp))
+                .background(color = PLColor.Main)
+                .padding(vertical = 16.dp, horizontal = 20.dp)) {
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = announcementItem.content,
+                    style = PLTypography.Korean.H0.copy(
+                        fontSize = 32.sp,
+                        color = PLColor.Gray800
+                    ),
+                )
+            }
         }
     }
 

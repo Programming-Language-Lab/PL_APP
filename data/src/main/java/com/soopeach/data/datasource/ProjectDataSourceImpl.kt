@@ -18,6 +18,5 @@ class ProjectDataSourceImpl: ProjectDataSource {
             it.toObject(ProjectItem::class.java)
         }
 
-
     }
 }
